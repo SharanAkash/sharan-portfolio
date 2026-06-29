@@ -130,11 +130,15 @@
                 </a>
 </div>
 </div>
-<nav class="hidden md:flex gap-8">
+<nav class="hidden md:flex gap-8 items-center">
 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#projects">Projects</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#skills">Skills</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#experience">Experience</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#contact">Contact</a>
+<button onclick="downloadResume()" class="bg-surface-tint text-background px-4 py-2 font-label-caps text-label-caps transition-colors hover:bg-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">download</span>
+                Resume
+            </button>
 </nav>
 </div>
 </header>
@@ -150,10 +154,14 @@
 <p class="font-body-base text-body-base text-on-surface-variant mb-10 max-w-2xl border-l-2 border-primary pl-4">
                 SDET | Test Automation Engineer | AI-Augmented QA Specialist. Expert in microservices testing, environment automation, and intelligent test frameworks across high-scale B2B/B2C platforms at Swiggy and Lynk.
             </p>
-<div class="flex gap-4">
+<div class="flex gap-4 flex-wrap">
 <a href="#projects" class="bg-primary text-on-primary px-6 py-3 font-label-caps text-label-caps border border-primary hover:bg-transparent hover:text-primary transition-colors">
                     View Projects
                 </a>
+<button onclick="downloadResume()" class="bg-surface-tint text-background px-6 py-3 font-label-caps text-label-caps hover:bg-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                    Download Resume
+                </button>
 <a href="https://github.com/SharanAkash" target="_blank" class="border border-outline-variant text-on-surface px-6 py-3 font-label-caps text-label-caps hover:border-primary hover:text-primary transition-colors flex items-center gap-2">
 <span class="material-symbols-outlined text-[18px]">terminal</span>
                     GitHub Profile
@@ -646,6 +654,7 @@
 </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 function copyCode() {
     const codeBlock = document.getElementById('codeBlock');
@@ -653,6 +662,196 @@ function copyCode() {
     navigator.clipboard.writeText(text).then(() => {
         alert('Code copied to clipboard!');
     });
+}
+
+function downloadResume() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Set font
+    doc.setFont("helvetica");
+
+    let y = 20;
+
+    // Header - Name
+    doc.setFontSize(24);
+    doc.setTextColor(0, 230, 57);
+    doc.text("SHARAN J S", 20, y);
+    y += 10;
+
+    // Title
+    doc.setFontSize(14);
+    doc.setTextColor(100, 100, 100);
+    doc.text("SDET | Test Automation Engineer | AI-Augmented QA Specialist", 20, y);
+    y += 15;
+
+    // Contact Info
+    doc.setFontSize(10);
+    doc.setTextColor(80, 80, 80);
+    doc.text("akashsharan5544@gmail.com  |  +91 9994168334  |  github.com/SharanAkash", 20, y);
+    y += 10;
+
+    // Professional Summary
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont("helvetica", "bold");
+    doc.text("PROFESSIONAL SUMMARY", 20, y);
+    y += 7;
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    const summary = "Results-driven SDET with 3+ years of experience in test automation, microservices testing, and\nenvironment automation across high-scale B2B/B2C e-commerce platforms at Swiggy and Lynk.\nProven track record of reducing regression testing time by 85-92% through intelligent automation\nframeworks built with Selenium, Playwright, and BDD Cucumber.";
+    doc.text(summary, 20, y, { maxWidth: 170 });
+    y += 25;
+
+    // Key Achievements
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.text("KEY ACHIEVEMENTS", 20, y);
+    y += 7;
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text("• Reduced regression testing time from 8 hours to under 1 hour (92% improvement)", 20, y);
+    y += 6;
+    doc.text("• Designed sit-assure platform, cutting environment setup time by 70% (4 hrs → 30 mins)", 20, y);
+    y += 6;
+    doc.text("• Built 200+ automated test cases achieving 85-92% reduction in manual testing effort", 20, y);
+    y += 6;
+    doc.text("• Accelerated project completion by 40-50% using AI-powered tools (Claude Code, Cursor AI)", 20, y);
+    y += 12;
+
+    // Professional Experience
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.text("PROFESSIONAL EXPERIENCE", 20, y);
+    y += 7;
+
+    // Swiggy
+    doc.setFontSize(11);
+    doc.setFont("helvetica", "bold");
+    doc.text("Software Test Engineer | Swiggy", 20, y);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text("Jul 2025 – Present", 150, y);
+    y += 6;
+
+    doc.setFontSize(10);
+    doc.text("• Designed sit-assure environment automation platform, reducing setup time by 70%", 20, y);
+    y += 5;
+    doc.text("• Created JSON-based environment templates for scalable environment management", 20, y);
+    y += 5;
+    doc.text("• Configured Kong, Kafka, Consul, MySQL, Redis, Elasticsearch for microservices", 20, y);
+    y += 5;
+    doc.text("• Integrated test automation with Jenkins CI/CD pipeline for continuous testing", 20, y);
+    y += 10;
+
+    // Lynk
+    doc.setFontSize(11);
+    doc.setFont("helvetica", "bold");
+    doc.text("Software Test Engineer | Lynk (acquired by Scootsy/Swiggy)", 20, y);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text("Aug 2023 – Jun 2025", 150, y);
+    y += 6;
+
+    doc.setFontSize(10);
+    doc.text("• Developed 200+ automated test cases achieving 85% automation coverage", 20, y);
+    y += 5;
+    doc.text("• Implemented POM design pattern for maintainable, scalable test automation", 20, y);
+    y += 5;
+    doc.text("• Built data-driven testing framework handling multiple test datasets", 20, y);
+    y += 5;
+    doc.text("• Reduced regression cycles from 8 hours to under 1 hour", 20, y);
+    y += 10;
+
+    // Add new page
+    doc.addPage();
+    y = 20;
+
+    // Technical Skills
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.text("TECHNICAL SKILLS", 20, y);
+    y += 7;
+
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "bold");
+    doc.text("Automation Frameworks:", 20, y);
+    doc.setFont("helvetica", "normal");
+    doc.text("Selenium WebDriver, Playwright, Cypress, Appium, BDD Cucumber, TestNG", 60, y);
+    y += 6;
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Languages:", 20, y);
+    doc.setFont("helvetica", "normal");
+    doc.text("Python, Java, TypeScript, JavaScript, C#, Bash", 60, y);
+    y += 6;
+
+    doc.setFont("helvetica", "bold");
+    doc.text("API & Performance:", 20, y);
+    doc.setFont("helvetica", "normal");
+    doc.text("Rest Assured, Postman, K6, JMeter, Gatling", 60, y);
+    y += 6;
+
+    doc.setFont("helvetica", "bold");
+    doc.text("DevOps & Infra:", 20, y);
+    doc.setFont("helvetica", "normal");
+    doc.text("Docker, Kubernetes, Jenkins, GitHub Actions, GitLab CI, Terraform", 60, y);
+    y += 6;
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Databases:", 20, y);
+    doc.setFont("helvetica", "normal");
+    doc.text("MySQL, PostgreSQL, MongoDB, Redis, Elasticsearch, Kafka", 60, y);
+    y += 6;
+
+    doc.setFont("helvetica", "bold");
+    doc.text("AI Tools:", 20, y);
+    doc.setFont("helvetica", "normal");
+    doc.text("Claude Code, Cursor AI, MCP Servers, LLM Prompting", 60, y);
+    y += 12;
+
+    // Projects
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.text("PERSONAL PROJECTS", 20, y);
+    y += 7;
+
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "bold");
+    doc.text("Restaurant Onboarding Automation", 20, y);
+    doc.setFont("helvetica", "normal");
+    y += 5;
+    doc.text("Multi-language automation (Python, Java, Node.js) with MCP Server for AI agent control", 20, y);
+    y += 4;
+    doc.text("Technologies: Python, Java, Node.js, MCP Server, Jira API", 20, y);
+    y += 8;
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Hunter-Service REST API", 20, y);
+    doc.setFont("helvetica", "normal");
+    y += 5;
+    doc.text("RESTful API service using Spring Boot for automated test execution workflows", 20, y);
+    y += 4;
+    doc.text("Technologies: Java, Spring Boot, REST APIs", 20, y);
+    y += 12;
+
+    // Education
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.text("EDUCATION", 20, y);
+    y += 7;
+
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "normal");
+    doc.text("B.E – Computer Science Engineering", 20, y);
+    doc.text("2017 – 2021", 150, y);
+    y += 5;
+    doc.text("Mahendra Engineering College, Namakkal", 20, y);
+
+    // Save PDF
+    doc.save("Sharan_JS_Resume.pdf");
 }
 </script>
 </body>
