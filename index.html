@@ -108,38 +108,81 @@
 <body class="min-h-screen flex flex-col font-body-base text-body-base">
 <!-- Top Navigation -->
 <header class="w-full top-0 bg-background border-b border-outline-variant z-50 sticky transition-all duration-200 ease-in-out">
-<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<!-- Desktop Header -->
+<div class="hidden md:flex justify-between items-center">
 <div class="flex items-center gap-6 flex-wrap">
 <div class="font-headline-md text-headline-md tracking-tighter">
-                <span class="text-on-surface">Sharan J S</span><span class="text-outline-variant mx-2">|</span><span class="text-surface-tint">SDET</span><span class="text-on-surface">_ARCHITECT</span>
-            </div>
-<div class="hidden lg:flex items-center gap-4 text-xs">
+                    <span class="text-on-surface">Sharan J S</span><span class="text-outline-variant mx-2">|</span><span class="text-surface-tint">SDET</span><span class="text-on-surface">_ARCHITECT</span>
+                </div>
+<div class="flex items-center gap-4 text-xs">
 <a href="mailto:akashsharan5544@gmail.com" class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
 <span class="material-symbols-outlined text-[14px]">mail</span>
-                    akashsharan5544@gmail.com
-                </a>
+                        akashsharan5544@gmail.com
+                    </a>
 <span class="text-outline-variant">|</span>
 <a href="tel:+919994168334" class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
 <span class="material-symbols-outlined text-[14px]">call</span>
-                    +91 9994168334
-                </a>
+                        +91 9994168334
+                    </a>
 <span class="text-outline-variant">|</span>
 <a href="https://github.com/SharanAkash" target="_blank" class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
 <span class="material-symbols-outlined text-[14px]">code</span>
-                    GitHub
-                </a>
+                        GitHub
+                    </a>
 </div>
 </div>
-<nav class="hidden md:flex gap-8 items-center">
+<nav class="flex gap-8 items-center">
 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#projects">Projects</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#skills">Skills</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#experience">Experience</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#contact">Contact</a>
 <button onclick="downloadResume()" class="bg-surface-tint text-background px-4 py-2 font-label-caps text-label-caps transition-colors hover:bg-primary flex items-center gap-2">
 <span class="material-symbols-outlined text-[16px]">download</span>
-                Resume
-            </button>
+                    Resume
+                </button>
 </nav>
+</div>
+
+<!-- Mobile Header -->
+<div class="md:hidden">
+<div class="flex justify-between items-center">
+<div class="font-headline-md text-headline-md tracking-tighter text-sm">
+                        <span class="text-on-surface">Sharan J S</span><span class="text-outline-variant mx-1">|</span><span class="text-surface-tint">SDET</span><span class="text-on-surface">_ARCHITECT</span>
+                    </div>
+<button onclick="toggleMobileMenu()" class="text-on-surface p-2">
+<span class="material-symbols-outlined text-[28px]" id="menuIcon">menu</span>
+</button>
+</div>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden mt-4 pb-4 border-t border-outline-variant">
+<nav class="flex flex-col gap-4 mt-4">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#projects" onclick="toggleMobileMenu()">Projects</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#skills" onclick="toggleMobileMenu()">Skills</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#experience" onclick="toggleMobileMenu()">Experience</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#contact" onclick="toggleMobileMenu()">Contact</a>
+<button onclick="downloadResume()" class="bg-surface-tint text-background px-4 py-2 font-label-caps text-label-caps transition-colors hover:bg-primary flex items-center gap-2 justify-center">
+<span class="material-symbols-outlined text-[16px]">download</span>
+                        Resume
+                    </button>
+<div class="flex flex-col gap-3 mt-2 pt-4 border-t border-outline-variant text-xs">
+<a href="mailto:akashsharan5544@gmail.com" class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">mail</span>
+                            akashsharan5544@gmail.com
+                        </a>
+<a href="tel:+919994168334" class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">call</span>
+                            +91 9994168334
+                        </a>
+<a href="https://github.com/SharanAkash" target="_blank" class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">code</span>
+                            GitHub
+                        </a>
+</div>
+</nav>
+</div>
+</div>
 </div>
 </header>
 
@@ -662,6 +705,19 @@ function copyCode() {
     navigator.clipboard.writeText(text).then(() => {
         alert('Code copied to clipboard!');
     });
+}
+
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const icon = document.getElementById('menuIcon');
+
+    if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        icon.textContent = 'close';
+    } else {
+        menu.classList.add('hidden');
+        icon.textContent = 'menu';
+    }
 }
 
 function downloadResume() {
